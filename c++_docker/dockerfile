@@ -1,0 +1,22 @@
+
+# Use a base image with the necessary build tools for C++
+FROM gcc:latest
+
+# Set the working directory inside the container
+# RUN apt-get update && apt-get upgrade -y
+
+# RUN apt-get install gcc -y
+
+# RUN mkdir -p app
+
+WORKDIR /app
+
+# Copy the C++ source file to the working directory
+COPY main.cpp .
+
+# Compile the C++ program
+RUN g++ -o myapp main.cpp
+
+# Set the command to execute the compiled C++ program
+# CMD ["sleep", "100000"]
+CMD ["./myapp"]

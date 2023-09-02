@@ -1,0 +1,10 @@
+
+FROM gcc:latest
+
+WORKDIR /C_app
+
+COPY main.c .
+
+RUN gcc main.c -o myapp
+
+CMD [ "./myapp" ]
