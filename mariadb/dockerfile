@@ -1,0 +1,18 @@
+
+# Use a base image with an appropriate Linux distribution (e.g., Debian)
+FROM debian:buster-slim
+
+# Install MariaDB Server
+RUN apt-get update && \
+    apt-get install -y mariadb-server && \
+    rm -rf /var/lib/apt/lists/*
+
+# Expose the default MariaDB port (3306)
+EXPOSE 3306
+
+# Create a startup script (optional)
+COPY startup.sh /startup.sh
+RUN chmod +x /startup.sh
+
+# Start MariaDB on container startup
+ENTRYPOINT ["/startup.sh"]
