@@ -1,18 +1,12 @@
 
 FROM debian:bullseye
 
-
-# Install MariaDB server
 RUN apt-get update && apt-get install -y mariadb-server
 
-# Create a new database and user using environment variables
 COPY ./script.sh .
 
 RUN chmod +x script.sh
 
-# Expose the MariaDB port
 EXPOSE 3306
 
-# Start MariaDB on container startup
 CMD  [ "./script.sh" ]
-# CMD ["mysqld", "--user=mysql", "--console"]
