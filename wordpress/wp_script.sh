@@ -4,13 +4,18 @@ cd /var/www/wordpress
 
 wp core download --allow-root
 
-mv wp-config-sample.php wp-config.php
+cp wp-config-sample.php wp-config.php
 
-# wp config create	--allow-root \
-#     --dbname=$SQL_DATABASE \
-#     --dbuser=$SQL_USER \
-#     --dbpass=$SQL_PASSWORD \
-#     --dbhost=mariadb:3306 --path='/var/www/wordpress'
-# mkdir /var/www/
-# mkdir /var/www/html
+# echo "this infos = $SQL_DATABASE $SQL_PASSWORD $SQL_USER"
+
+wp config set DB_NAME $SQL_DATABASE --allow-root 
+wp config set DB_USER $SQL_USER --allow-root 
+wp config set DB_PASSWORD $SQL_PASSWORD --allow-root 
+wp config set DB_HOST mariadb --allow-root 
+
+wp core install --url=$DOMAIN_NAME/ --title=$WP_TITLE --admin_user=$WP_ADMIN_USR --admin_password=$WP_ADMIN_PWD --admin_email=$WP_ADMIN_EMAIL --skip-email --allow-root
+
+wp user create $WP_USR $WP_EMAIL --role=author --user_pass=$WP_PWD --allow-root
+
+
 tail -f
