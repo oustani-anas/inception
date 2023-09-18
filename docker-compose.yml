@@ -1,3 +1,11 @@
+
+version: '3'
+
+networks:
+  inception:
+
+# volumes:
+
 services:
   mariadb:
     build: ./mariadb
@@ -5,3 +13,26 @@ services:
     restart: on-failure
     env_file:
       - .env
+    networks:
+      - inception
+    volumes:
+      - : /jnsdf
+  
+  nginx:
+    build: ./nginx
+    container_name: mginx
+    restart: on-failure
+    ports:
+      - 443:443
+    depends_on:
+      - wordpress
+    networks:
+      - inception
+  
+  wordpress:
+    build: ./wordpress
+    container_name: wordpress
+    depends_on:
+      - mariadb
+    networks:
+      - inception
