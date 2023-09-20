@@ -4,8 +4,17 @@ version: '3'
 networks:
   inception:
 
-# volumes:
-
+volumes:
+  my_db:
+    driver_opts:
+     type: none
+     o: bind
+     device: /Users/aoustani/Desktop/db
+  my_wp:
+    driver_opts:
+      type: none
+      o: bind
+      device: /Users/aoustani/Desktop/db
 
 services:
   mariadb:
@@ -14,26 +23,32 @@ services:
     restart: on-failure
     env_file:
       - .env
-    networks:
-      - inception
     volumes:
-      - : /jnsdf
-  
-  nginx:
-    build: ./nginx
-    container_name: mginx
-    restart: on-failure
-    ports:
-      - 443:443
-    depends_on:
-      - wordpress
+      - my_db:/var/lib/mysql
     networks:
       - inception
+  
+  # nginx:
+  #   build: ./nginx
+  #   container_name: mginx
+  #   restart: on-failure
+  #   ports:
+  #     - 443:443
+  #   depends_on:
+  #     - wordpress
+    # volumes:
+    #   - my_wp:/var/www
+  #   networks:
+  #     - inception
   
   wordpress:
     build: ./wordpress
     container_name: wordpress
     depends_on:
       - mariadb
+    volumes:
+      - my_wp:/var/www/html
+    env_file:
+      - .env
     networks:
       - inception
