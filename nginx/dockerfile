@@ -1,6 +1,6 @@
 
 # Use the official Nginx base image from Docker Hub
-FROM debian:buster
+FROM debian:bullseye
 
 # Update package lists and install Nginx
 RUN apt-get update && apt-get install -y nginx openssl
