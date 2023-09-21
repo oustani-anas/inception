@@ -18,13 +18,19 @@ sed -i "s/127.0.0.1/0.0.0.0/g" /etc/mysql/mariadb.conf.d/50-server.cnf
 
 service mariadb start
 
+echo ">> 01"
 mysql -e "CREATE DATABASE IF NOT EXISTS $SQL_DATABASE;"
+echo ">> 02"
 mysql -e "CREATE USER IF NOT EXISTS '$SQL_USER'@'%' IDENTIFIED BY '$SQL_PASSWORD';"
+echo ">> 03"
 mysql -e "GRANT ALL PRIVILEGES ON $SQL_DATABASE.* to '$SQL_USER'@'%';"
-mysql -e "ALTER USER 'root'@'localhost' IDENTIFIED BY '$SQL_PASSWORD' ;"
+echo ">> 04"
 mysql -e "FLUSH PRIVILEGES;"
+mysql -e "ALTER USER 'root'@'localhost' IDENTIFIED BY '$SQL_ROOT_PASSWORD' ;"
+echo ">> 05"
 
-mysqladmin -u root shutdown
+mysqladmin -u root --password=$SQL_ROOT_PASSWORD shutdown
 
 mysqld_safe
+
 # tail -f
