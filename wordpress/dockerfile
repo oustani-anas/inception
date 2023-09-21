@@ -13,7 +13,7 @@ COPY wp_script.sh .
 
 RUN  chmod +x wp_script.sh
 
-# RUN mkdir  -p /var/www/wordpress
+RUN mkdir  -p /var/www/html/wordpress
 
 EXPOSE 9000
 

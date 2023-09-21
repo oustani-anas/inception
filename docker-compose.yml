@@ -14,7 +14,7 @@ volumes:
     driver_opts:
       type: none
       o: bind
-      device: /Users/aoustani/Desktop/db
+      device: /Users/aoustani/Desktop/wp
 
 services:
   mariadb:
@@ -28,18 +28,18 @@ services:
     networks:
       - inception
   
-  # nginx:
-  #   build: ./nginx
-  #   container_name: mginx
-  #   restart: on-failure
-  #   ports:
-  #     - 443:443
-  #   depends_on:
-  #     - wordpress
-    # volumes:
-    #   - my_wp:/var/www
-  #   networks:
-  #     - inception
+  nginx:
+    build: ./nginx
+    container_name: nginx
+    restart: on-failure
+    ports:
+      - 443:443
+    depends_on:
+      - wordpress
+    volumes:
+      - my_wp:/var/www/html/wordpress
+    networks:
+      - inception
   
   wordpress:
     build: ./wordpress
@@ -47,7 +47,7 @@ services:
     depends_on:
       - mariadb
     volumes:
-      - my_wp:/var/www/html
+      - my_wp:/var/www/html/wordpress
     env_file:
       - .env
     networks:
