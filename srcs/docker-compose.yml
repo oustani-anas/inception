@@ -22,7 +22,7 @@ services:
     container_name: mariadb
     restart: on-failure
     env_file:
-      - .env
+      - ../.env
     volumes:
       - my_db:/var/lib/mysql
     networks:
@@ -49,6 +49,6 @@ services:
     volumes:
       - my_wp:/var/www/html/wordpress
     env_file:
-      - .env
+      - ../.env
     networks:
       - inception
