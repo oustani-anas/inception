@@ -6,7 +6,7 @@ sed -i -e 's/listen =.*/listen = 9000/' /etc/php/7.4/fpm/pool.d/www.conf
 
 cd /var/www/html/wordpress
 
-wp core download --allow-root --path=/var/www/html/wordpress
+wp core download --allow-root 
 
 cp wp-config-sample.php wp-config.php
 

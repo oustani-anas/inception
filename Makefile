@@ -10,6 +10,6 @@ up:
 
 fclean:
 	docker-compose -f $(SRC) down
-	docker system prune -f -all --volumes
+	docker system prune -f --all --volumes
 	rm -rf /Users/aoustani/Desktop/wp
 	rm -rf /Users/aoustani/Desktop/db
