@@ -8,7 +8,7 @@ up:
 	mkdir -p /Users/aoustani/Desktop/wp
 	docker-compose -f $(SRC) up --build -d
 
-fclean:
+down:
 	docker-compose -f $(SRC) down
 	docker system prune -f --all --volumes
 	rm -rf /Users/aoustani/Desktop/wp
