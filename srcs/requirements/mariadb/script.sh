@@ -12,4 +12,3 @@ mysql -e "ALTER USER 'root'@'localhost' IDENTIFIED BY '$SQL_ROOT_PASSWORD' ;"
 
 mysqladmin -u root --password=$SQL_ROOT_PASSWORD shutdown
 mysqld_safe
-# exec "$@"
