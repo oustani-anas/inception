@@ -13,3 +13,6 @@ down:
 	docker system prune -f --all --volumes
 	rm -rf /Users/aoustani/Desktop/wp
 	rm -rf /Users/aoustani/Desktop/db
+
+stop:
+	docker-compose -f $(SRC) stop

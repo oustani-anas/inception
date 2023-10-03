@@ -23,7 +23,7 @@ services:
     container_name: mariadb
     restart: on-failure
     ports:
-      - 3306:3306
+      - 3306
     env_file:
       - .env
     volumes:
@@ -37,7 +37,7 @@ services:
     container_name: nginx
     restart: on-failure
     ports:
-      - 443:443
+      - 443
     depends_on:
       - wordpress
     volumes:
@@ -50,7 +50,7 @@ services:
     image: wordpress
     container_name: wordpress
     ports:
-      - 9000:9000
+      - 9000
     depends_on:
       - mariadb
     volumes:
