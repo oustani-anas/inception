@@ -1,5 +1,5 @@
 
-version: '3'
+version: '2'
 
 networks:
   inception:
@@ -37,7 +37,7 @@ services:
     container_name: nginx
     restart: on-failure
     ports:
-      - 443
+      - 443:443
     depends_on:
       - wordpress
     volumes:
